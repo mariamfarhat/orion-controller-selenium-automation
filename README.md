@@ -53,12 +53,12 @@ The script will process each row in the Excel file, logging into the respective 
 
 The Excel file (`data/test_snmp.xlsx`) should contain the following columns:
 
-| Column    | Description                  | Example          |
-|-----------|------------------------------|------------------|
+| Column    | Description                       | Example          |
+|-----------|-----------------------------------|------------------|
 | host      | Controller IP address or hostname | 192.168.1.100   |
-| port      | Controller web interface port | 80              |
-| username  | Login username               | admin            |
-| password  | Login password               | password123      |
+| port      | Controller web interface port     | 80              |
+| username  | Login username                    | admin            |
+| password  | Login password                    | password123      |
 
 Example Excel structure:
 ```
