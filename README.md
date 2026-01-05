@@ -1,133 +1,102 @@
-Orion Controller Selenium Automation
+# Orion Controller Selenium Automation
 
-This project is a Python Selenium automation script that logs into an Orion/SNMP web controller, navigates to the system time/date configuration page, and reads or updates configuration values based on whether the field is editable or read-only.
+A Python-based automation tool that uses Selenium WebDriver to automate login and system time/date configuration for Orion/SNMP controllers. The tool reads configuration data from an Excel file and performs batch operations across multiple controllers.
 
-The script reads multiple device credentials from an Excel file, making it suitable for automating configuration across multiple telecom sites or controllers.
+## Features
 
-🚀 Features
+- **Automated Login**: Securely logs into Orion/SNMP controllers using credentials from Excel input
+- **Time/Date Configuration**: Updates system time and date settings, including NTP server configuration
+- **Batch Processing**: Processes multiple controllers from a single Excel file
+- **Headless Operation**: Runs in headless Chrome mode for server environments
+- **Error Handling**: Includes fallback mechanisms for read-only fields and exception handling
 
-- Reads host, port, username, and password from an Excel file
+## Prerequisites
 
-- Automates login to Orion/SNMP web controller
+- Python 3.8 or higher
+- Google Chrome browser
+- Excel file with controller details (see Data Format section)
 
-- Navigates to system Time & Date configuration
+## Installation
 
-- Detects whether a field is:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/orion-controller-selenium-automation.git
+   cd orion-controller-selenium-automation
+   ```
 
-    Editable (<input>)
+2. Create and activate a virtual environment (recommended):
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
 
-    Read-only (<div>)
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-- Updates configuration values when editable
+4. Ensure Chrome is installed on your system.
 
-- Works with headless or visible Chrome
+## Usage
 
-- Handles Selenium exceptions gracefully
+1. Prepare your Excel file in the `data/` directory with controller information (see Data Format below).
 
-🧰 Technologies Used
+2. Run the automation script:
+   ```bash
+   cd src
+   python main.py
+   ```
 
-- Python 3
+The script will process each row in the Excel file, logging into the respective controller and updating the time/date configuration.
 
-- Selenium WebDriver
+## Data Format
 
-- Pandas
+The Excel file (`data/test_snmp.xlsx`) should contain the following columns:
 
-- ChromeDriver Manager
+| Column    | Description                  | Example          |
+|-----------|------------------------------|------------------|
+| host      | Controller IP address or hostname | 192.168.1.100   |
+| port      | Controller web interface port | 80              |
+| username  | Login username               | admin            |
+| password  | Login password               | password123      |
 
-- Excel (.xlsx) input
+Example Excel structure:
+```
+host          | port | username | password
+--------------|------|----------|----------
+192.168.1.100 | 80   | admin    | pass123
+192.168.1.101 | 80   | admin    | pass456
+```
 
+## Configuration
 
-📂 Project Structure
-.
-├── data/
-│   └── test_snmp.xlsx
-├── main.py
-├── requirements.txt
-└── README.md
+The script currently sets the NTP server to `192.168.1.1`. To modify this value, edit the `value_to_set` variable in `src/main.py`.
 
-📊 Excel Input Format
+## Dependencies
 
-The Excel file data/test_snmp.xlsx must contain the following columns:
+- Selenium: Web automation
+- Pandas: Excel file processing
+- WebDriver Manager: Automatic ChromeDriver management
+- OpenPyXL: Excel file support
 
-host	port	username	password
-192.168.1.10	8080	admin	admin123
+## Contributing
 
-Each row represents a controller to automate.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-⚙️ Installation
-1️⃣ Clone the repository
-git clone https://github.com/yourusername/orion-controller-selenium-automation.git
-cd orion-controller-selenium-automation
-
-2️⃣ Install dependencies
-pip install -r requirements.txt
-
-📦 requirements.txt
-selenium
-pandas
-webdriver-manager
-openpyxl
-requests
-beautifulsoup4
-
-▶️ Usage
-
-Run the script:
-
-python main.py
-
-
-What happens:
-
-Reads controller details from Excel
-
-Opens the login page
-
-Logs in automatically
-
-Navigates to:
-
-/controller/configuration/system/timedate
-
-
-Reads or updates the configuration field
-
-Applies and reloads settings if editable
-
-🧠 Logic Handling
-
-- Editable Field
-
-- Reads value from <input>
- 
-- Updates value
-
-- Clicks Accept and Reload
-
-- Read-Only Field
-
-- Reads value from <div>
-
-- Logs the value only
-
-This makes the script robust against UI differences across firmware versions.
-
-⚠️ Notes & Warnings
-
-- Make sure Chrome is installed
-
-- Do not expose real credentials in public repos
-
-- Some controllers may block automation without delays
-
-- Adjust time.sleep() values if pages load slowly
-
-🔐 Security Recommendation
-
-For production use:
+## Security Recommendation
 
 - Hash or encrypt passwords
-
 - Use environment variables
-
 - Avoid storing credentials in plain Excel files
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Disclaimer
+
+This tool is provided as-is for automation purposes. Ensure you have proper authorization before running automation against network devices. Test in a development environment first.
