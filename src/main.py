@@ -28,13 +28,9 @@ for row in df.itertuples(index=False):
 #Print the url to check the extracted values
     print("Opening:", url)
 #Connect to URL
-options = Options()
-options.add_argument('--headless')
-options.add_argument('--no-sandbox')
-options.add_argument('--disable-dev-shm-usage')
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-wait = WebDriverWait(driver, 15)
 driver = webdriver.Chrome()
+wait = WebDriverWait(driver, 15)
+
 driver.get(url)
 
 time.sleep(2)  # Wait for the page to load
