@@ -1,0 +1,49 @@
+# --------------------
+# Python
+# --------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# --------------------
+# Virtual Environments
+# --------------------
+venv/
+.env/
+.venv/
+
+# --------------------
+# IDEs / Editors
+# --------------------
+.vscode/
+.idea/
+*.swp
+
+# --------------------
+# OS Files
+# --------------------
+.DS_Store
+Thumbs.db
+
+# --------------------
+# Logs
+# --------------------
+*.log
+
+# --------------------
+# Excel / Data Files (IMPORTANT)
+# --------------------
+data/*.xlsx
+data/*.xls
+data/*.csv
+
+# --------------------
+# Selenium / Browser
+# --------------------
+*.png
+*.html
+chromedriver*
